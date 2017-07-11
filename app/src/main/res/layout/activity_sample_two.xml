@@ -5,13 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.pd_liu.bottomnavigationview.MainActivity">
+    tools:context="com.example.pd_liu.bottomnavigationview.SampleTwoActivity">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="start"
-        android:text="SampleTwo" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_page"
@@ -33,7 +28,7 @@
         android:layout_gravity="center"
         app:itemIconTint="@drawable/bottom_navigation_color"
         app:itemTextColor="@drawable/bottom_navigation_color"
-        app:menu="@menu/bottom_navi_view">
+        app:menu="@menu/bottom_navi_view2">
 
     </android.support.design.widget.BottomNavigationView>
 

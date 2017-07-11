@@ -1,57 +1,38 @@
 package com.example.pd_liu.bottomnavigationview;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.pd_liu.bottomnavigationview.adapter.ViewPagerAdapter;
 import com.example.pd_liu.bottomnavigationview.fragment.BlankFragment;
-import com.example.pd_liu.bottomnavigationview.transform.ZoomOutTransformer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author pd_liu
- *         This Sample show some base functions only.
- *         You can {@link # https://material.io/guidelines/components/bottom-navigation.html#bottom-navigation-behavior}to learn more.
- */
-public class MainActivity extends AppCompatActivity {
-    /**
-     * view pager
-     */
+public class SampleTwoActivity extends AppCompatActivity {
+
     private ViewPager mViewPager;
-    /**
-     * bottom navigation view
-     */
     private BottomNavigationView mBottomNavigationView;
-    /**
-     * fragment containers
-     */
     private List<Fragment> mFragments;
-    /**
-     * menu item
-     */
     private MenuItem mPreMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_sample_two);
 
         mViewPager = (ViewPager) findViewById(R.id.view_page);
-        mViewPager.setPageTransformer(true, new ZoomOutTransformer());
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_view);
 
         mFragments = new ArrayList<>(3);
+        mFragments.add(new BlankFragment());
+        mFragments.add(new BlankFragment());
         mFragments.add(new BlankFragment());
         mFragments.add(new BlankFragment());
         mFragments.add(new BlankFragment());
@@ -64,15 +45,18 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.bottom_1:
                         mViewPager.setCurrentItem(0);
-                        ((BlankFragment) mFragments.get(0)).setContentTxt(item.getTitle().toString());
                         break;
                     case R.id.bottom_2:
                         mViewPager.setCurrentItem(1);
-                        ((BlankFragment) mFragments.get(1)).setContentTxt(item.getTitle().toString());
                         break;
                     case R.id.bottom_3:
                         mViewPager.setCurrentItem(2);
-                        ((BlankFragment) mFragments.get(2)).setContentTxt(item.getTitle().toString());
+                        break;
+                    case R.id.bottom_4:
+                        mViewPager.setCurrentItem(3);
+                        break;
+                    case R.id.bottom_5:
+                        mViewPager.setCurrentItem(4);
                         break;
                 }
                 return true;
@@ -110,14 +94,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    /**
-     * start new activity.
-     *
-     * @param view click view
-     */
-    public void start(View view) {
-        startActivity(new Intent(this, SampleTwoActivity.class));
-    }
-
 }
