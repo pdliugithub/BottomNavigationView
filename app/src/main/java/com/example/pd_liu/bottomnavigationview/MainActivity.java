@@ -10,10 +10,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.pd_liu.bottomnavigationview.adapter.ViewPagerAdapter;
 import com.example.pd_liu.bottomnavigationview.fragment.BlankFragment;
-import com.example.pd_liu.bottomnavigationview.transform.ZoomOutTransformer;
+import com.example.pd_liu.bottomnavigationview.transform.AlphaTransformer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private MenuItem mPreMenuItem;
 
+    private TextView mDescribeLog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,13 +51,19 @@ public class MainActivity extends AppCompatActivity {
 
 
         mViewPager = (ViewPager) findViewById(R.id.view_page);
-        mViewPager.setPageTransformer(true, new ZoomOutTransformer());
+
+        mDescribeLog = (TextView) findViewById(R.id.describe_log);
+        AlphaTransformer zoomOutTransformer = new AlphaTransformer();
+        zoomOutTransformer.setTextView(mDescribeLog);
+        mViewPager.setPageTransformer(true, zoomOutTransformer);
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_view);
 
         mFragments = new ArrayList<>(3);
         mFragments.add(new BlankFragment());
         mFragments.add(new BlankFragment());
         mFragments.add(new BlankFragment());
+
+        mViewPager.setOffscreenPageLimit(mFragments.size() -1);
 
         mViewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), mFragments));
 

@@ -8,9 +8,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.pd_liu.bottomnavigationview.adapter.ViewPagerAdapter;
 import com.example.pd_liu.bottomnavigationview.fragment.BlankFragment;
+import com.example.pd_liu.bottomnavigationview.transform.AlphaTransformer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ public class SampleTwoActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNavigationView;
     private List<Fragment> mFragments;
     private MenuItem mPreMenuItem;
+    private TextView mDescribeLog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,10 @@ public class SampleTwoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sample_two);
 
         mViewPager = (ViewPager) findViewById(R.id.view_page);
+        mDescribeLog = (TextView) findViewById(R.id.describe_log);
+        AlphaTransformer zoomOutTransformer = new AlphaTransformer();
+        zoomOutTransformer.setTextView(mDescribeLog);
+        mViewPager.setPageTransformer(true, zoomOutTransformer);
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_view);
 
         mFragments = new ArrayList<>(3);
